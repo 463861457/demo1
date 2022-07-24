@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "aaa.ccc",
+      "type": "java.lang.String",
+      "description": "Description for aaa.ccc."
+    },
+    {
+      "name": "aaa.bbb",
+      "type": "java.lang.String",
+      "description": "Description for aaa.bbb."
+    }
+  ] }

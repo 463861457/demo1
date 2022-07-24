@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--导入thymeleaf的名称空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="'欢迎来到'"></h1>
+<!--action是接口的标志，进入login这个页面-->
+<form action="login" , method="post">
+    <!--<form action="login">-->
+<!--    <label>用户名：<input name="name"/></label>-->
+<!--    <label>密码：<input name="pwd"/></label>-->
+
+    <label>用户名：<input name="name" value="test"/></label>
+    <label>密码：<input name="pwd" value="test"/></label>
+
+    <!--这种密码是活的，随数据库变化而变化-->
+
+    <label>
+        <button type="submit">登录</button>
+    </label>
+    <a th:text="${msg}"></a>
+</form>
+
+
+</body>
+</html>

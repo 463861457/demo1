@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--导入thymeleaf的名称空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="'欢迎来到'+${name}"></h1>
+<h2>登陆成功 </h2>
+<!--法1，输入绝对地址-->
+<!--<a href="http://localhost:8888/lijibin/query">去查询</a>-->
+<!--<a href="http://localhost:8888/lijibin/index">退出登录</a>-->
+
+
+<!--法2：yml与此，都带李继彬拼音-->
+<a href="/lijibin/query">去查询</a>
+<a href="/lijibin/logout">退出登录</a>
+
+
+<!--法3：yml与此，都不带李继彬拼音-->
+<!--<a href="/query">去查询</a>-->
+<!--<a href="/logout">退出登录</a>-->
+</body>
+</html>

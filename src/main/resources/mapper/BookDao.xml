@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.BookDao">
+
+    <resultMap type="com.example.demo.entity.Book" id="BookMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="isbn" column="isbn" jdbcType="VARCHAR"/>
+        <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
+        <result property="author" column="author" jdbcType="VARCHAR"/>
+        <result property="publisherName" column="publisher_name" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="location" column="location" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="leftNumber" column="left_number" jdbcType="INTEGER"/>
+        <result property="totalNumber" column="total_number" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BookMap">
+        select
+          id, name, isbn, category_name, author, publisher_name, price, location, description, left_number, total_number
+        from book
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BookMap">
+        select
+          id, name, isbn, category_name, author, publisher_name, price, location, description, left_number, total_number
+        from book
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="isbn != null and isbn != ''">
+                and isbn = #{isbn}
+            </if>
+            <if test="categoryName != null and categoryName != ''">
+                and category_name = #{categoryName}
+            </if>
+            <if test="author != null and author != ''">
+                and author = #{author}
+            </if>
+            <if test="publisherName != null and publisherName != ''">
+                and publisher_name = #{publisherName}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="location != null and location != ''">
+                and location = #{location}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="leftNumber != null">
+                and left_number = #{leftNumber}
+            </if>
+            <if test="totalNumber != null">
+                and total_number = #{totalNumber}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from book
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="isbn != null and isbn != ''">
+                and isbn = #{isbn}
+            </if>
+            <if test="categoryName != null and categoryName != ''">
+                and category_name = #{categoryName}
+            </if>
+            <if test="author != null and author != ''">
+                and author = #{author}
+            </if>
+            <if test="publisherName != null and publisherName != ''">
+                and publisher_name = #{publisherName}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="location != null and location != ''">
+                and location = #{location}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="leftNumber != null">
+                and left_number = #{leftNumber}
+            </if>
+            <if test="totalNumber != null">
+                and total_number = #{totalNumber}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into book(name, isbn, category_name, author, publisher_name, price, location, description, left_number, total_number)
+        values (#{name}, #{isbn}, #{categoryName}, #{author}, #{publisherName}, #{price}, #{location}, #{description}, #{leftNumber}, #{totalNumber})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into book(name, isbn, category_name, author, publisher_name, price, location, description, left_number, total_number)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.name}, #{entity.isbn}, #{entity.categoryName}, #{entity.author}, #{entity.publisherName}, #{entity.price}, #{entity.location}, #{entity.description}, #{entity.leftNumber}, #{entity.totalNumber})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into book(name, isbn, category_name, author, publisher_name, price, location, description, left_number, total_number)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.isbn}, #{entity.categoryName}, #{entity.author}, #{entity.publisherName}, #{entity.price}, #{entity.location}, #{entity.description}, #{entity.leftNumber}, #{entity.totalNumber})
+        </foreach>
+        on duplicate key update
+        name = values(name),
+        isbn = values(isbn),
+        category_name = values(category_name),
+        author = values(author),
+        publisher_name = values(publisher_name),
+        price = values(price),
+        location = values(location),
+        description = values(description),
+        left_number = values(left_number),
+        total_number = values(total_number)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update book
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="isbn != null and isbn != ''">
+                isbn = #{isbn},
+            </if>
+            <if test="categoryName != null and categoryName != ''">
+                category_name = #{categoryName},
+            </if>
+            <if test="author != null and author != ''">
+                author = #{author},
+            </if>
+            <if test="publisherName != null and publisherName != ''">
+                publisher_name = #{publisherName},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="location != null and location != ''">
+                location = #{location},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="leftNumber != null">
+                left_number = #{leftNumber},
+            </if>
+            <if test="totalNumber != null">
+                total_number = #{totalNumber},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from book where id = #{id}
+    </delete>
+
+</mapper>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--导入thymeleaf的名称空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--th:text 为 Thymeleaf 属性，用于获取指定属性的值-->
+<h1 th:text="'欢迎来到'"></h1>
+
+
+<table border="1" style="color: chartreuse" th:width="333">
+    <tr>
+        <th>书籍名称</th>
+        <th>书籍作者</th>
+        <th>书籍作者</th>
+        <th>书籍作者</th>
+    </tr>
+
+    <tr th:each="item: ${list}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.author}"></td>
+        <td th:text="${item.author}"></td>
+        <td th:text="${item.author}"></td>
+    </tr>
+
+    <tr>
+        <th>row 3, cell 1</th>
+        <th>row 3, cell 2</th>
+    </tr>
+</table>
+
+
+</body>
+</html>
