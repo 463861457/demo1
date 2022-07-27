@@ -27,10 +27,10 @@ public class LoginController {
     public String login(Model model, String name, String pwd, HttpSession session) {//传loginBean含义是表示传入数据库中的一条数据，这条数据包含姓名和年龄
 //        System.out.println(loginBean.toString());
 //这个就相当于对用户输入的信息（账号和密码）进行一层加密。判断输入的信息是否符合要求，是在控制层加了一个判断语句boolean和if。
-        if (name.length() < 6 || pwd.length() < 6) {
-            model.addAttribute("msg", "用户名或密码长度过短");
-            return "index";
-        }
+//        if (name.length() < 6 || pwd.length() < 6) {
+//            model.addAttribute("msg", "用户名或密码长度过短");
+//            return "index";
+//        }
 
         LoginBean loginBean = new LoginBean(name, pwd);
         boolean exist = userService.login(loginBean);
