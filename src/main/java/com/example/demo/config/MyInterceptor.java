@@ -4,6 +4,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -40,6 +41,8 @@ public class MyInterceptor implements HandlerInterceptor {
         String requrl = request.getRequestURL().toString();
         if (requrl.contains("query")) {
             if (null == user) {
+                response.sendRedirect("index");//路径自己写，这是我的路径
+//                response.sendRedirect("/index");// 带/表示绝对路径，不带/表示相对路径。
                 return false;
             }
         }

@@ -6,9 +6,9 @@ public class LoginBean {//创建这个，是为了将  login接口  接进来，
 
     private String pwd;
 
-    public LoginBean(String name, String pwd) {
-
-    }
+//    public LoginBean(String name, String pwd) {
+//
+//    }
 
 
     public String getName() {
