@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Scanner;
 
 @Controller
 @RequestMapping("/")
@@ -27,7 +28,7 @@ public class LoginController {
 //        System.out.println(loginBean.toString());
 //这个就相当于对用户输入的信息（账号和密码）进行一层加密。判断输入的信息是否符合要求，是在控制层加了一个判断语句boolean和if。
         if (name.length() < 6 || pwd.length() < 6) {
-            model.addAttribute("msg","用户名或密码长度过短");
+            model.addAttribute("msg", "用户名或密码长度过短");
             return "index";
         }
 
@@ -60,5 +61,20 @@ public class LoginController {
         return "index";
     }
 
+    //参数校验（增加必填字段，格式校验）
+    public static void main(String args[]) {
+        String regex = "[1][34578][0-9]{9}"; //手机号码的格式：第一位只能为1，第二位可以是3，4，5，7，8，第三位到第十一位可以为0-9中任意一个数字
+        System.out.println("请输入11位手机号码");
+        Scanner s = new Scanner(System.in);  //System.in 表示获取控制台的信息；
+        String number = s.next();
+        if (number.matches(regex)) {
+            System.out.println("电话号码格式正确");
+        } else {
+            System.out.println("电话号码格式不正确");
+        }
+    }
 }
+
+
+
 
