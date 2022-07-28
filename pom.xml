@@ -64,6 +64,11 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+        <!--引用AOP-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -74,7 +79,7 @@
             </plugin>
         </plugins>
 
-        
+
 
     </build>
 
