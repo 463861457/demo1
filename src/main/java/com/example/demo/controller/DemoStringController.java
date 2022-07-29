@@ -16,7 +16,7 @@ public class DemoStringController {
     @Value("${aaa.ccc}")
     private String ss1;
 
-    @Value("${aaa.ddd}")
+    @Value("${aaa.ddd:110}")    //加一个冒号并有数值，防止获取不到配置文件的数值报错情况，取不到配置文件数值，那么输出的就是110
     private String ss2;
 
     @RequestMapping("hello")
