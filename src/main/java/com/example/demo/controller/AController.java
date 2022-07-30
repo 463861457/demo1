@@ -17,5 +17,6 @@ public class AController {
         System.out.println("user 表中共有" + i + "条数据。");
         return i;
         //此处sout的作用是验证数据库的连接是否成功；此处return的作用也是验证数据库的连接是否成功，但是要去网页上验证。
+//        111111111111111111
     }
 }
